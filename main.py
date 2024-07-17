@@ -43,5 +43,3 @@ if price_float < TARGET_PRICE:
             to_addrs="jerrycoding1@yahoo.com",
             msg=f"Subject:Price Reduction Alert!\n\n{item_title_formatted} is now ${price_float}\n{live_endpoint}".encode('utf-8')
         )
-else:
-    print("no")
