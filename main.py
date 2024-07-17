@@ -22,7 +22,6 @@ headers = {
 response = requests.get(live_endpoint, headers=headers)
 website_data = response.text
 soup = BeautifulSoup(website_data, "html.parser")
-print(soup.prettify)
 
 price_data = soup.find(name="span", class_="aok-offscreen").getText()
 price_split = price_data.split("$")
@@ -33,13 +32,13 @@ item_title_formatted = " ".join(item_title.split())
 # item_title_formatted = " ".join(item_title.split()).encode('ascii', 'ignore').decode('ascii')
 
 if price_float < TARGET_PRICE:
-    print("yes")
+
     with smtplib.SMTP(f"{SMTP_ADDRESS}", 587) as connection:
         connection.starttls()
         connection.login(user=MY_EMAIL, password=MY_PASSWORD)
 
         connection.sendmail(
             from_addr=MY_EMAIL,
-            to_addrs="jerrycoding1@yahoo.com",
+            to_addrs="ENTER RECIPIENT EMAIL ADDRESS",
             msg=f"Subject:Price Reduction Alert!\n\n{item_title_formatted} is now ${price_float}\n{live_endpoint}".encode('utf-8')
         )
